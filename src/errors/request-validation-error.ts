@@ -3,7 +3,7 @@ import { CustomError } from './custom-error';
 
 export class RequestValidationError extends CustomError {
   statusCode = 400;
-  ResponseCode = -400;
+  ResponseCode = -605;
 
   constructor(public errors: ValidationError[]) {
     super('Invalid request parameters');

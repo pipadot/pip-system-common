@@ -2,7 +2,7 @@ import { CustomError } from './custom-error';
 
 export class DataNotFoundError extends CustomError {
   statusCode = 404;
-  ResponseCode = -2;
+  ResponseCode = -602;
   constructor() {
     super('Data not found');
 
