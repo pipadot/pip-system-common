@@ -1,6 +1,6 @@
 {
   "name": "@pippip/pip-system-common",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Giao thức cơ bản của Hệ thống Pip",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
