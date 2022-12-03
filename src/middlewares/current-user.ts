@@ -6,6 +6,7 @@ interface UserPayload {
   phone: string;
   name: string;
   role: string;
+  status: number;
 }
 
 declare global {
