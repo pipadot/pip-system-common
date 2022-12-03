@@ -18,8 +18,12 @@ declare global {
   }
 }
 
-export const currentUser = (req: Request, res: Response) => {
-  if (!req.session?.jwt) {
+export const currentUser = (
+  req: Request,
+  res: Response,
+  refresh_token: string
+) => {
+  if (!req.session?.access_token || !refresh_token) {
     // return next();
     throw new NotAuthenticateError('You are not authenticated.');
   }
@@ -33,6 +37,9 @@ export const currentUser = (req: Request, res: Response) => {
     res.status(200).send({
       response_status: 1,
       message: 'Login Successful',
+      data: {
+        refresh_token,
+      },
     });
   } catch (err) {
     console.log(err);
