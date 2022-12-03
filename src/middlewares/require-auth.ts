@@ -28,11 +28,11 @@ export const requireLogin = (
     ) as UserPayload;
     req.currentUser = payload;
   } catch (err) {
-    if (err instanceof JsonWebTokenError) {
-      throw new PipJsonWebTokenError(err.message);
-    }
     if (err instanceof TokenExpiredError) {
       throw new PipTokenExpiredError(err.expiredAt);
+    }
+    if (err instanceof JsonWebTokenError) {
+      throw new PipJsonWebTokenError(err.message);
     }
     if (err instanceof NotBeforeError) {
       throw new PipTokenNotBeforeError(err.message, err.date);
