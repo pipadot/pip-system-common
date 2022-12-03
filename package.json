@@ -3,6 +3,11 @@
   "version": "1.0.11",
   "description": "Giao thức cơ bản của Hệ thống Pip",
   "main": "./build/index.js",
+  "homepage": "https://github.com/pipadot/pip-system-common",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pipadot/pip-system-common.git"
+  },
   "types": "./build/index.d.ts",
   "files": [
     "build/**/*"
@@ -10,7 +15,7 @@
   "scripts": {
     "clean": "del ./build/*",
     "build": "npm run clean && tsc",
-    "pub": "git add . && git commit -m \"Updates\" && npm version patch && npm run build && npm publish"
+    "pub": "git add . && git commit -m \"Updates\" && git push origin main && npm version patch && npm run build && npm publish"
   },
   "keywords": [],
   "author": "Nguyễn Quang Hiếu",
