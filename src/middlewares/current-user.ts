@@ -26,8 +26,8 @@ export const currentUser = (req: Request, res: Response) => {
 
   try {
     const payload = jwt.verify(
-      req.session.jwt,
-      process.env.JWT_KEY!
+      req.session.access_token,
+      process.env.ACCESS_TOKEN_SECRET!
     ) as UserPayload;
     req.currentUser = payload;
     res.status(200).send({
