@@ -1,12 +1,12 @@
 import { CustomError } from './custom-error';
 
-export class NotAuthorizedError extends CustomError {
-  statusCode = 403;
-  ResponseCode = -603;
+export class NotAuthenticateError extends CustomError {
+  statusCode = 401;
+  ResponseCode = -601;
   constructor(public message: string) {
     super(message);
 
-    Object.setPrototypeOf(this, NotAuthorizedError.prototype);
+    Object.setPrototypeOf(this, NotAuthenticateError.prototype);
   }
 
   serializeErrors() {

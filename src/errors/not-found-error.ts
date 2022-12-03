@@ -2,7 +2,7 @@ import { CustomError } from './custom-error';
 
 export class NotFoundError extends CustomError {
   statusCode = 404;
-  ResponseCode = -603;
+  ResponseCode = -606;
   constructor() {
     super('Route not found');
 
