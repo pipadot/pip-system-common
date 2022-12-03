@@ -4,6 +4,8 @@ import jwt from 'jsonwebtoken';
 interface UserPayload {
   id: string;
   phone: string;
+  name: string;
+  role: string;
 }
 
 declare global {
