@@ -37,3 +37,11 @@ Pip Common Library
 - response_status: negative number
 - errors: Array Object
 - - Object: { message: string, field?: string }
+
+# Current User
+
+- id: string
+- phone: string
+- name: string
+- role: string
+- status: number
