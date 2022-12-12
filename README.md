@@ -6,6 +6,8 @@ Pip Common Library
 - **Error Response**
 - **Current User**
 - **Require Auth**
+- - Require Login
+- - Require Role
 - **Validate Request**
 
 # Get Started
@@ -13,14 +15,25 @@ Pip Common Library
 ## Error Status:
 
 - "-600" : Bad Request
+- "-601" : NotAuthenticateError
 - "-602" : Data Not Found
+- "-603" : NotAuthorizedError
 - "-604" : Database connection error
-- "-601" : Not Authorized
-- "-603" : Route Not Found
-- "-605" : Validation Error
+- "-605" : RequestValidationError
+- "-606" : Not Found Error
+- "-607" : PipTokenExpiredError
+- "-608" : PipJsonWebTokenError
+- "-609" : PipTokenNotBeforeError
+- "-610" : PermissionDeniedError
 
-## Error Type
+## Account Status
 
-- response_status: number
-- message: string
-- data : Object | undefinded
+- Active = 1
+- InActive = 0
+- Block = 2
+
+## Error Form Response
+
+- response_status: negative number
+- errors: Array Object
+- - Object: { message: string, field?: string }
