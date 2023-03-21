@@ -45,3 +45,14 @@ Pip Common Library
 - name: string
 - role: string
 - status: number
+
+# Current Agency
+
+- id: string
+- phone: string
+- name: string
+- role: string
+- status: number
+- rank?: number
+- isTransportation?: boolean
+- isDriver?: boolean
