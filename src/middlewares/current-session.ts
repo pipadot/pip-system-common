@@ -12,6 +12,11 @@ export interface AgencyPayload extends UserPayload {
   isTransportation?: boolean;
   isDriver?: boolean;
 }
+export interface AppAgencyPayload extends UserPayload {
+  rank?: number;
+  isTransportation?: boolean;
+  isDriver?: boolean;
+}
 
 declare global {
   namespace Express {

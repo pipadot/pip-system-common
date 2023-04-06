@@ -6,7 +6,11 @@ import jwt, {
   NotBeforeError,
 } from 'jsonwebtoken';
 import { NotAuthenticateError } from '../errors/not-authenticated-error';
-import { AgencyPayload, UserPayload } from './current-session';
+import {
+  AgencyPayload,
+  AppAgencyPayload,
+  UserPayload,
+} from './current-session';
 import { PipTokenExpiredError } from '../errors/token-expired-error';
 import { AccountStatus } from '../types/account-status';
 import { PipJsonWebTokenError } from '../errors/json-web-token-error';
@@ -95,6 +99,49 @@ export const requireAgencyRole = (roles: string[]) => {
     if (
       !roles.includes(req.currentAgency!.role) ||
       req.currentAgency!.status != AccountStatus.Active
+    ) {
+      throw new NotAuthorizedError('You are not authorized.');
+    }
+    next();
+  };
+};
+export const requireAppLogin = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  if (req.headers.authorization == undefined) {
+    throw new NotAuthenticateError('You are not authenticated.');
+  }
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET!) as AppAgencyPayload;
+  } catch (err) {
+    if (err instanceof TokenExpiredError) {
+      req.currentAgency = null;
+      throw new PipTokenExpiredError(err.expiredAt);
+    }
+    if (err instanceof JsonWebTokenError) {
+      req.currentAgency = null;
+      throw new PipJsonWebTokenError(err.message);
+    }
+    if (err instanceof NotBeforeError) {
+      req.currentAgency = null;
+      throw new PipTokenNotBeforeError(err.message, err.date);
+    }
+  }
+  next();
+};
+export const requireAppRole = (roles: string[]) => {
+  return async (req: Request, res: Response, next: NextFunction) => {
+    const token = req.headers.authorization!.split(' ')[1];
+    const payload = jwt.verify(
+      token,
+      process.env.ACCESS_TOKEN_SECRET!
+    ) as AppAgencyPayload;
+    if (
+      !roles.includes(payload.role) ||
+      payload.status != AccountStatus.Active
     ) {
       throw new NotAuthorizedError('You are not authorized.');
     }
