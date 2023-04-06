@@ -23,6 +23,7 @@ declare global {
     interface Request {
       currentUser?: UserPayload | null | undefined;
       currentAgency?: AgencyPayload | null | undefined;
+      currentAppAgency?: AppAgencyPayload | null | undefined;
     }
   }
 }

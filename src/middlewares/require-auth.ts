@@ -115,7 +115,11 @@ export const requireAppLogin = (
   }
   try {
     const token = req.headers.authorization.split(' ')[1];
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET!) as AppAgencyPayload;
+    const payload = jwt.verify(
+      token,
+      process.env.ACCESS_TOKEN_SECRET!
+    ) as AppAgencyPayload;
+    req.currentAppAgency = payload;
   } catch (err) {
     if (err instanceof TokenExpiredError) {
       req.currentAgency = null;
@@ -134,14 +138,9 @@ export const requireAppLogin = (
 };
 export const requireAppRole = (roles: string[]) => {
   return async (req: Request, res: Response, next: NextFunction) => {
-    const token = req.headers.authorization!.split(' ')[1];
-    const payload = jwt.verify(
-      token,
-      process.env.ACCESS_TOKEN_SECRET!
-    ) as AppAgencyPayload;
     if (
-      !roles.includes(payload.role) ||
-      payload.status != AccountStatus.Active
+      !roles.includes(req.currentAppAgency!.role) ||
+      req.currentAppAgency!.status != AccountStatus.Active
     ) {
       throw new NotAuthorizedError('You are not authorized.');
     }

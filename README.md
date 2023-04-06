@@ -5,9 +5,15 @@ Pip Common Library
 - **Error Handeler**
 - **Error Response**
 - **Current User**
+- **Current Agency**
+- **Current App Agency**
 - **Require Auth**
-- - Require Login
-- - Require Role
+- - requireLogin
+- - requireRole
+- - requireAgencyLogin
+- - requireAgencyRole
+- - requireAppLogin
+- - requireAppRole
 - **Validate Request**
 
 # Get Started
@@ -38,7 +44,7 @@ Pip Common Library
 - errors: Array Object
 - - Object: { message: string, field?: string }
 
-# Current User
+# User Payload
 
 - id: string
 - phone: string
@@ -46,7 +52,18 @@ Pip Common Library
 - role: string
 - status: number
 
-# Current Agency
+# Agency Web Payload
+
+- id: string
+- phone: string
+- name: string
+- role: string
+- status: number
+- rank?: number
+- isTransportation?: boolean
+- isDriver?: boolean
+
+# Agency Mobile APP Payload
 
 - id: string
 - phone: string
