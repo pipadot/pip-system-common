@@ -21,7 +21,7 @@ export const requireLogin = (
   res: Response,
   next: NextFunction
 ) => {
-  if (!req.session?.access_token) {
+  if (!req.session?.user_access_token) {
     throw new NotAuthenticateError('You are not authenticated.');
   }
 
@@ -66,13 +66,13 @@ export const requireAgencyLogin = (
   res: Response,
   next: NextFunction
 ) => {
-  if (!req.session?.access_token) {
+  if (!req.session?.agency_access_token) {
     throw new NotAuthenticateError('You are not authenticated.');
   }
 
   try {
     const payload = jwt.verify(
-      req.session.access_token,
+      req.session.agency_access_token,
       process.env.ACCESS_TOKEN_SECRET!
     ) as AgencyPayload;
     req.currentAgency = payload;
