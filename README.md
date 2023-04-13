@@ -18,6 +18,11 @@ Pip Common Library
 
 # Get Started
 
+## Request Session
+
+- User ADM: user_access_token
+- Agency VN: agency_access_token
+
 ## Error Status:
 
 - "-600" : Bad Request

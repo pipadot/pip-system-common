@@ -27,7 +27,7 @@ export const requireLogin = (
 
   try {
     const payload = jwt.verify(
-      req.session.access_token,
+      req.session.user_access_token,
       process.env.ACCESS_TOKEN_SECRET!
     ) as UserPayload;
     req.currentUser = payload;
