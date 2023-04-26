@@ -11,11 +11,20 @@ export const validateRequest = (
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
-    if (req.currentAppAgency) {
-      throw new RequestValidationErrorApp(errors.array());
-    } else {
-      throw new RequestValidationError(errors.array());
-    }
+    throw new RequestValidationError(errors.array());
+  }
+
+  next();
+};
+export const validateRequestApp = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    throw new RequestValidationErrorApp(errors.array());
   }
 
   next();
