@@ -15,6 +15,11 @@ import { PipTokenExpiredError } from '../errors/token-expired-error';
 import { AccountStatus } from '../types/account-status';
 import { PipJsonWebTokenError } from '../errors/json-web-token-error';
 import { PipTokenNotBeforeError } from '../errors/token-not-before-error';
+import { NotAuthenticateErrorApp } from '../app-errors/not-authenticated-error';
+import { PipTokenExpiredErrorApp } from '../app-errors/token-expired-error';
+import { PipJsonWebTokenErrorApp } from '../app-errors/json-web-token-error';
+import { PipTokenNotBeforeErrorApp } from '../app-errors/token-not-before-error';
+import { NotAuthorizedErrorApp } from '../app-errors/not-authorized-error';
 
 export const requireLogin = (
   req: Request,
@@ -111,7 +116,7 @@ export const requireAppLogin = (
   next: NextFunction
 ) => {
   if (req.headers.authorization == undefined) {
-    throw new NotAuthenticateError('You are not authenticated.');
+    throw new NotAuthenticateErrorApp('You are not authenticated.');
   }
   try {
     const token = req.headers.authorization.split(' ')[1];
@@ -123,15 +128,15 @@ export const requireAppLogin = (
   } catch (err) {
     if (err instanceof TokenExpiredError) {
       req.currentAgency = null;
-      throw new PipTokenExpiredError(err.expiredAt);
+      throw new PipTokenExpiredErrorApp(err.expiredAt);
     }
     if (err instanceof JsonWebTokenError) {
       req.currentAgency = null;
-      throw new PipJsonWebTokenError(err.message);
+      throw new PipJsonWebTokenErrorApp(err.message);
     }
     if (err instanceof NotBeforeError) {
       req.currentAgency = null;
-      throw new PipTokenNotBeforeError(err.message, err.date);
+      throw new PipTokenNotBeforeErrorApp(err.message, err.date);
     }
   }
   next();
@@ -142,7 +147,7 @@ export const requireAppRole = (roles: string[]) => {
       !roles.includes(req.currentAppAgency!.role) ||
       req.currentAppAgency!.status != AccountStatus.Active
     ) {
-      throw new NotAuthorizedError('You are not authorized.');
+      throw new NotAuthorizedErrorApp('You are not authorized.');
     }
     next();
   };
