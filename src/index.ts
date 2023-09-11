@@ -14,6 +14,7 @@ export * from './errors/permission-denied-error';
 
 export * from './middlewares/current-session';
 export * from './middlewares/error-handler';
+export * from './middlewares/log-helper';
 export * from './middlewares/require-auth';
 export * from './middlewares/validate-request';
 
