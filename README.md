@@ -36,6 +36,7 @@ Pip Common Library
 - "-608" : PipJsonWebTokenError
 - "-609" : PipTokenNotBeforeError
 - "-610" : PermissionDeniedError
+- "-611" : Invalid Refresh Token
 
 ## Account Status
 
