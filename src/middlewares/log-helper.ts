@@ -9,6 +9,15 @@ export const logInfo = (name: string, input?: any, output?: any) => {
     )} || Output: ${JSON.stringify(output)} \n`
   );
 };
+export const logEvent = (name: string, input?: any, output?: any) => {
+  console.log(
+    `${moment().format(
+      'HH:MM DD/MM/YYYY'
+    )} - [${name}] || EVENT || Input: ${JSON.stringify(
+      input
+    )} || Output: ${JSON.stringify(output)} \n`
+  );
+};
 export const logError = (name: string, input?: any, output?: any) => {
   console.log(
     `${moment().format(

@@ -15,7 +15,8 @@
   "scripts": {
     "clean": "del ./build/*",
     "build": "npm run clean && tsc",
-    "pub": "git add . && git commit -m \"Updates\" && git push origin main && npm version patch && npm run build && npm publish"
+    "pub": "git add . && git commit -m \"Updates\" && git push origin main && npm version patch && npm run build",
+    "pub:finish": "npm publish"
   },
   "keywords": [],
   "author": "Nguyễn Quang Hiếu",
