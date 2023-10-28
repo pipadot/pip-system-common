@@ -1,13 +1,13 @@
 import { CustomAppError } from './custom-app-error';
 
-export class BadServiceError extends CustomAppError {
+export class BadServiceErrorApp extends CustomAppError {
   statusCode = 400;
   ResponseCode = -612;
 
   constructor(public message: string) {
     super(message);
 
-    Object.setPrototypeOf(this, BadServiceError.prototype);
+    Object.setPrototypeOf(this, BadServiceErrorApp.prototype);
   }
 
   serializeErrors() {
