@@ -1,6 +1,8 @@
 // Re-export stuff from errors and middlewares
 export * from './errors/bad-request-error';
+export * from './errors/bad-service-error';
 export * from './errors/custom-error';
+export * from './errors/custom-app-error';
 export * from './errors/database-connection-error';
 export * from './errors/not-authorized-error';
 export * from './errors/not-authenticated-error';
