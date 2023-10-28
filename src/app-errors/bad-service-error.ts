@@ -1,6 +1,6 @@
-import { CustomAppError } from './custom-app-error';
+import { CustomErrorApp } from './custom-error';
 
-export class BadServiceErrorApp extends CustomAppError {
+export class BadServiceErrorApp extends CustomErrorApp {
   statusCode = 400;
   ResponseCode = -612;
 
@@ -12,7 +12,7 @@ export class BadServiceErrorApp extends CustomAppError {
 
   serializeErrors() {
     return {
-      response_code: this.ResponseCode,
+      status: this.ResponseCode,
       message: this.message,
     };
   }

@@ -1,8 +1,6 @@
 // Re-export stuff from errors and middlewares
 export * from './errors/bad-request-error';
-export * from './app-errors/bad-service-error';
 export * from './errors/custom-error';
-export * from './app-errors/custom-app-error';
 export * from './errors/database-connection-error';
 export * from './errors/not-authorized-error';
 export * from './errors/not-authenticated-error';
@@ -35,6 +33,7 @@ export * from './events/payment-created-event';
 //Re-export App stuffs
 
 export * from './app-errors/bad-request-error';
+export * from './app-errors/bad-service-error';
 export * from './app-errors/custom-error';
 export * from './app-errors/database-connection-error';
 export * from './app-errors/not-authorized-error';
