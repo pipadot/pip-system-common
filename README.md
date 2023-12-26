@@ -38,6 +38,23 @@ Pip Common Library
 - "-610" : PermissionDeniedError
 - "-611" : Invalid Refresh Token
 
+## Error App Status:
+
+- "-600" : Bad Request
+- "-601" : NotAuthenticateError
+- "-602" : Data Not Found
+- "-603" : NotAuthorizedError
+- "-604" : Database connection error
+- "-605" : RequestValidationError
+- "-606" : Not Found Error
+- "-607" : PipTokenExpiredError
+- "-608" : PipJsonWebTokenError
+- "-609" : PipTokenNotBeforeError
+- "-610" : PermissionDeniedError
+- "-611" : Invalid Refresh Token
+- "-612" : Bad Service Error
+- "-613" : Duplicate Driver Error
+
 ## Account Status
 
 - Active = 1

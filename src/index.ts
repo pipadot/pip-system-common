@@ -45,3 +45,4 @@ export * from './app-errors/token-not-before-error';
 export * from './app-errors/json-web-token-error';
 export * from './app-errors/request-validation-error';
 export * from './app-errors/permission-denied-error';
+export * from './app-errors/duplicate-driver-error';
